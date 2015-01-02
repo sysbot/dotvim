@@ -153,7 +153,7 @@ let g:rbpt_loadcmd_toggle = 0
 inoremap ;; <Esc>
 inoremap jk <Esc>
 inoremap jj <ESC>
-inoremap <Esc> <nop>
+"inoremap <Esc> <nop>
 
 " calendar
 let g:calendar_google_calendar = 1
