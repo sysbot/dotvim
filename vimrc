@@ -150,10 +150,8 @@ let g:rbpt_loadcmd_toggle = 0
 
 " remap escape
 " Map right command key to Esc
-inoremap ;; <Esc>
-inoremap jk <Esc>
-inoremap jj <ESC>
-"inoremap <Esc> <nop>
+inoremap kj <Esc>
+inoremap <Esc> <nop>
 
 " calendar
 let g:calendar_google_calendar = 1
@@ -464,10 +462,9 @@ nnoremap <leader>d "_d
 nnoremap <leader>e :Errors<cr>
 nnoremap <leader>T :TweetVimHomeTimeline<cr>
 nnoremap <leader>x :sign unplace *<cr>
-nnoremap <leader>w :w <cr>
+nnoremap <leader>w :Gwrite<cr>
 nnoremap <leader>[ :SearchNotes <cr>
-nnoremap <leader>z :wq!<cr>
-vnoremap <leader>d "_d
+nnoremap <leader>z :Gcommit<cr>
 vnoremap <leader>q <esc>:q!<cr>
 
 " pasting without using set paste or set nopaste
