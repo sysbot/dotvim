@@ -151,6 +151,7 @@ let g:rbpt_loadcmd_toggle = 0
 " remap escape
 " Map right command key to Esc
 inoremap kj <Esc>
+inoremap jk <Esc>
 inoremap <Esc> <nop>
 
 " calendar
