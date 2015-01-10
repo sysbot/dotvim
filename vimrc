@@ -77,6 +77,7 @@ Plugin 'basyura/twibill.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-repeat'
+Plugin 'vim-scripts/InsertChar'
 Plugin 'tpope/vim-speeddating'
 Plugin 'rstacruz/sparkup'
 Plugin 'panozzaj/vim-autocorrect'
@@ -152,7 +153,7 @@ let g:rbpt_loadcmd_toggle = 0
 " Map right command key to Esc
 inoremap kj <Esc>
 inoremap jk <Esc>
-inoremap <Esc> <nop>
+" inoremap <Esc> <nop>
 
 " calendar
 let g:calendar_google_calendar = 1
@@ -266,7 +267,8 @@ function! InsertSingle()
     silent! exec "normal i "
   endif
 endfunction
-nnoremap <silent> <Space> :call InsertSingle()<CR>
+nnoremap <TAB> :<C-U>call InsertChar#insert(v:count1)<CR>
+nnoremap <Space> :<C-U>call InsertChar#insert(v:count1)<CR>
 
 " multiple cursor
 let g:multi_cursor_exit_from_visual_mode = 0
@@ -396,7 +398,7 @@ nnoremap <Leader>4 :4b<CR>
 nnoremap <Leader>5 :5b<CR>
 nnoremap <Leader>6 :6b<CR>
 nnoremap <Leader>7 :e $NOTES_DIR/Fastly\ networking<CR>
-nnoremap <Leader>8 :e $NOTES_DIR/Ruby\ notes.rb<CR>
+nnoremap <Leader>8 :e $NOTES_DIR/Ruby\ notes<CR>
 nnoremap <Leader>9 :e $NOTES_DIR/VIM\ notes<CR>
 nnoremap <Leader>0 :10b<CR>
 " Map for opening the vimrc file
@@ -466,7 +468,7 @@ nnoremap <leader>x :sign unplace *<cr>
 nnoremap <leader>w :Gwrite<cr>
 nnoremap <leader>[ :SearchNotes <cr>
 nnoremap <leader>z :Gcommit<cr>
-vnoremap <leader>q <esc>:q!<cr>
+nnoremap <leader>q <esc>:wq<cr>
 
 " pasting without using set paste or set nopaste
 " https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
