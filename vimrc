@@ -19,6 +19,9 @@
 
 " required for vunble
 set nocompatible
+if has("autocmd")
+  filetype indent plugin on
+endif
 filetype off
 
 " set the runtime path to include Vundle and initialize
@@ -85,6 +88,12 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'yegappan/mru'
+Plugin 'tpope/vim-endwise'
+Plugin 'Raimondi/delimitMate'
+Plugin 'gregsexton/gitv'
+Plugin 'coderifous/textobj-word-column.vim'
+Plugin 'vim-scripts/SearchComplete'
+Plugin 'nelstrom/vim-textobj-rubyblock'
 
 "-------------------------------------------------------------------------------
 " All of your Plugins must be added before the following line
@@ -102,6 +111,9 @@ autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 "autocorrection
 autocmd filetype text call AutoCorrect()
 
+" matchit
+runtime macros/matchit.vim
+
 " Auto Commands
 " Source the vimrc file after saving it
 augroup vimrc
@@ -116,6 +128,7 @@ augroup END
 iabbrev @@ ngqbao@gmail.com
 iabbrev ccopy Copyright 2014 Bao Nguyen, all rights reserved.
 iabbrev maintenace maintenance
+iab enviroment environment
 
 " Restore cursor position
 autocmd BufReadPost *
