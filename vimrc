@@ -69,6 +69,7 @@ Plugin 'mattn/gist-vim'
 Plugin 'mattn/webapi-vim'
 Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 Plugin 'itchyny/calendar.vim'
 Plugin 'elzr/vim-json'
 Plugin 'basyura/TweetVim'
@@ -93,7 +94,6 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'gregsexton/gitv'
 Plugin 'coderifous/textobj-word-column.vim'
 Plugin 'vim-scripts/SearchComplete'
-Plugin 'nelstrom/vim-textobj-rubyblock'
 
 "-------------------------------------------------------------------------------
 " All of your Plugins must be added before the following line
@@ -216,6 +216,10 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+" split and views
+nnoremap vv <C-w>v<CR>
+nnoremap ss <C-w>s<CR>
 
 
 " tabulatize
