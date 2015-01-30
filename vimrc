@@ -94,6 +94,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'gregsexton/gitv'
 Plugin 'coderifous/textobj-word-column.vim'
 Plugin 'vim-scripts/SearchComplete'
+Plugin 'Shougo/vimshell.vim'
 
 "-------------------------------------------------------------------------------
 " All of your Plugins must be added before the following line
@@ -129,6 +130,7 @@ iabbrev @@ ngqbao@gmail.com
 iabbrev ccopy Copyright 2014 Bao Nguyen, all rights reserved.
 iabbrev maintenace maintenance
 iab enviroment environment
+iab retreive retrieve
 
 " Restore cursor position
 autocmd BufReadPost *
@@ -474,7 +476,7 @@ augroup filetypedetect
 augroup END
 
 " leader
-nnoremap <leader>\ :w<cr>:mak<cr>
+nnoremap <leader>m :w<cr>:mak<cr>
 nnoremap <leader>. :cd %:h<cr>
 nnoremap <leader>c :s/.*/\L&/<bar>:s/\<./\u&/g<cr>
 nnoremap <leader>C :Calendar -view=week<cr>
