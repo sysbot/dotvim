@@ -95,6 +95,13 @@ Plugin 'gregsexton/gitv'
 Plugin 'coderifous/textobj-word-column.vim'
 Plugin 'vim-scripts/SearchComplete'
 Plugin 'Shougo/vimshell.vim'
+Plugin 'farseer90718/vim-taskwarrior'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'vim-scripts/bufkill.vim.git'
+Plugin 'vim-scripts/pydoc.vim'
+Plugin 'nvie/vim-flake8'
+Plugin 'alfredodeza/pytest.vim'
+Plugin 'bronson/vim-visual-star-search'
 
 "-------------------------------------------------------------------------------
 " All of your Plugins must be added before the following line
@@ -131,6 +138,15 @@ iabbrev ccopy Copyright 2014 Bao Nguyen, all rights reserved.
 iabbrev maintenace maintenance
 iab enviroment environment
 iab retreive retrieve
+iab retreiving retrieving
+iab avaiable available
+iab syncrohnized synchronized
+iab configuraiton configuration
+iab intergration integration
+iab nessasary necessary
+iab intergrated integrated
+iab catheral cathedral
+iab Catheral Cathedral
 
 " Restore cursor position
 autocmd BufReadPost *
@@ -164,6 +180,22 @@ let g:rbpt_loadcmd_toggle = 0
 "au Syntax * RainbowParenthesesLoadSquare
 "au Syntax * RainbowParenthesesLoadBraces
 
+" ctrlp
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
+" airline customizations
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
 " remap escape
 " Map right command key to Esc
 inoremap kj <Esc>
@@ -174,11 +206,18 @@ inoremap jk <Esc>
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 
+" task warriror
+let g:task_rc_override = 'rc.defaultheight=0'
+let g:task_default_prompt = ['description', 'project']
+
 " vroom
 let g:vroom_map_keys = 0
 
 " notes
 let g:notes_directories = ['~/Dropbox/notes']
+
+" ack
+nnoremap <leader>a <Esc>:Ack!
 
 " tweetvim
 let g:tweetvim_display_icon = 1
@@ -223,6 +262,11 @@ inoremap <right> <nop>
 nnoremap vv <C-w>v<CR>
 nnoremap ss <C-w>s<CR>
 
+" flake8
+"autocmd BufWritePost *.py call Flake8()
+autocmd FileType python map <buffer> '<Leader>8' :call Flake8()<CR>
+let g:flake8_show_in_gutter=1  " show
+let g:flake8_show_quickfix=0
 
 " tabulatize
 nmap <Leader>a= :Tabularize /=<CR>
@@ -337,22 +381,24 @@ set autowrite                   " write a modified buffer on each :next , ...
 set backspace=indent,eol,start  " backspacing over everything in insert mode
 set browsedir=current           " which directory to use for the file browser
 "set complete+=k                 " scan the files given with the 'dictionary' option
-"set cursorline " Highlight the cursor screen line "
-"set colorcolumn=80 " Draws a vertical line at column 80 "
+set cursorline " Highlight the cursor screen line "
+set colorcolumn=80 " Draws a vertical line at column 80 "
 set showmatch
 nnoremap <tab> %
 vnoremap <tab> %
-
+set foldlevel=99
+set foldmethod=indent
 set background=dark
 colorscheme solarized
 
 " String to put at the start of lines that have been wrapped "
-let &showbreak='↪ '
+"let &showbreak='↪ '
 
 " Minimal number of screen lines to keep above and below the cursor "
 set scrolloff=3
 
-set history=50                  " keep 50 lines of command line history
+set history=100                  " keep 50 lines of command line history
+set undolevels=100                  " keep 100 undo
 set hlsearch                    " highlightthe last used search pattern
 set incsearch                   " do incremental searching
 set listchars=tab:>.,eol:\$     " strings to use in 'list' mode
@@ -368,7 +414,7 @@ set formatoptions+=l
 set popt=left:8pc,right:3pc     " print options
 set ruler                       " show the cursor position all the time
 set visualbell                  " visual bell instead of beeping
-set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
+set wildignore=*.bak,*.o,*.e,*~,*.pyc,*.swp,*.class " wildmenu: ignore these extensions
 set wildmenu                    " command-line completion in an enhanced mode
 
 "editor settings
@@ -417,7 +463,7 @@ nnoremap <Leader>4 :4b<CR>
 nnoremap <Leader>5 :5b<CR>
 nnoremap <Leader>6 :6b<CR>
 nnoremap <Leader>7 :e $NOTES_DIR/Fastly\ networking<CR>
-nnoremap <Leader>8 :e $NOTES_DIR/Ruby\ notes<CR>
+"nnoremap <Leader>8 :e $NOTES_DIR/Ruby\ notes<CR>
 nnoremap <Leader>9 :e $NOTES_DIR/VIM\ notes<CR>
 nnoremap <Leader>0 :10b<CR>
 " Map for opening the vimrc file
@@ -459,8 +505,6 @@ inoremap  {  {}<Left>
 "vnoremap  }  s{  }<Esc><Left>P<Right><Right>%
 "
 "" autocomplete quotes (visual and select mode)
-" xnoremap  '  s''<Esc>P<Right>
-" xnoremap  "  s""<Esc>P<Right>
 " xnoremap  `  s``<Esc>P<Right>
 
 " Fast switching between buffers
@@ -488,6 +532,7 @@ nnoremap <leader>w :Gwrite<cr>
 nnoremap <leader>[ :SearchNotes <cr>
 nnoremap <leader>z :Gcommit<cr>
 nnoremap <leader>q <esc>:wq<cr>
+nnoremap <leader>s :VimShell<cr>
 
 " pasting without using set paste or set nopaste
 " https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
@@ -523,6 +568,10 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
+noremap ; :
+noremap : <nop>
+cmap w!! w !sudo tee % >/dev/null
+
 " Steve Losh
 noremap H ^
 noremap L g_
@@ -531,6 +580,7 @@ noremap L g_
 "noremap <C-a> <Home>
 "noremap <C-e> <End>
 inoremap <C-e> <End>
+inoremap <C-$> <End>
 inoremap <C-a> <Home>
 
 vnoremap K k
@@ -570,8 +620,24 @@ nmap ++ vip++
 "map <C-J> <C-W>j<C-W>_
 "map <C-K> <C-W>k<C-W>_
 
+nnoremap <PageDown> f
+nnoremap <PageUp> b
+
 " indentatino
 nmap <D-[> <<
 nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
+
+" vritualenv packages only
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
