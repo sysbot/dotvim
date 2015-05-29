@@ -102,6 +102,7 @@ Plugin 'vim-scripts/pydoc.vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'bronson/vim-visual-star-search'
+Plugin 'airblade/vim-gitgutter'
 
 "-------------------------------------------------------------------------------
 " All of your Plugins must be added before the following line
@@ -115,6 +116,9 @@ autocmd BufNewFile, BufRead Vagrantfile set filetype=ruby
 autocmd BufNewFile, BufRead Berksfile set filetype=ruby
 autocmd BufNewFile, BufRead *.erb set filetype=eruby
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+
+" clipboard setup
+set clipboard^=unnamed
 
 "autocorrection
 autocmd filetype text call AutoCorrect()
@@ -463,7 +467,7 @@ nnoremap <Leader>4 :4b<CR>
 nnoremap <Leader>5 :5b<CR>
 nnoremap <Leader>6 :6b<CR>
 nnoremap <Leader>7 :e $NOTES_DIR/Fastly\ networking<CR>
-"nnoremap <Leader>8 :e $NOTES_DIR/Ruby\ notes<CR>
+nnoremap <Leader>8 :e $NOTES_DIR/Ruby\ notes<CR>
 nnoremap <Leader>9 :e $NOTES_DIR/VIM\ notes<CR>
 nnoremap <Leader>0 :10b<CR>
 " Map for opening the vimrc file
@@ -520,7 +524,7 @@ augroup filetypedetect
 augroup END
 
 " leader
-nnoremap <leader>m :w<cr>:mak<cr>
+nnoremap <leader>m :w<cr>:exec '!python' shellescape(@%, 1)<cr>
 nnoremap <leader>. :cd %:h<cr>
 nnoremap <leader>c :s/.*/\L&/<bar>:s/\<./\u&/g<cr>
 nnoremap <leader>C :Calendar -view=week<cr>
