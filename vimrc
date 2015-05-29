@@ -85,7 +85,7 @@ Plugin 'vim-scripts/InsertChar'
 Plugin 'tpope/vim-speeddating'
 Plugin 'rstacruz/sparkup'
 Plugin 'panozzaj/vim-autocorrect'
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'yegappan/mru'
@@ -103,6 +103,8 @@ Plugin 'nvie/vim-flake8'
 Plugin 'alfredodeza/pytest.vim'
 Plugin 'bronson/vim-visual-star-search'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'davidhalter/jedi-vim'
 
 "-------------------------------------------------------------------------------
 " All of your Plugins must be added before the following line
@@ -185,9 +187,9 @@ let g:rbpt_loadcmd_toggle = 0
 "au Syntax * RainbowParenthesesLoadBraces
 
 " ctrlp
-let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+" let g:ctrlp_working_path_mode = 'ra'
+" set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+" set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 " let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
@@ -245,7 +247,13 @@ augroup markdown
    au BufRead,BufWrite,InsertChange */mod*/*.txt syn match ErrorMsg '\%>77v.\+'
 augroup end
 
+" unite
+nnoremap <C-p> :Unite file_rec/async<cr>
 nnoremap <Leader>f :Unite -start-insert file<CR>
+nnoremap <space>/ :Unite grep:.<cr>
+let g:unite_source_history_yank_enable = 1
+nnoremap <space>y :Unite history/yank<cr>
+nnoremap <space>s :Unite -quick-match buffer<cr>
 
 let g:ycm_server_keep_logfiles = 0
 let g:ycm_server_log_level = 'info'
