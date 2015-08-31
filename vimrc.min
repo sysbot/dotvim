@@ -1,0 +1,137 @@
+"         FILE:  .vimrc.min
+"  DESCRIPTION:  Minimal, cross-platform
+"      CREATED:  08.29.2015
+"
+"-------------------------------------------------------------------------------
+" map - recursive mapping
+" noremap - non recursive mapping
+" For each of these sets of mappings, there is a mapping that works in normal,
+" visual, select and operator modes (:map and :noremap), one that works in normal
+" mode (:nmap and :nnoremap), one in visual mode (:vmap and :vnoremap) and so on.
+"-------------------------------------------------------------------------------
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Bundle 'christoomey/vim-tmux-navigator'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'benmills/vimux'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'jamessan/vim-gnupg'
+
+call vundle#end()            " required
+
+" Map right command key to Esc
+inoremap ;; <Esc>
+inoremap jk <Esc>
+inoremap jj <ESC>
+inoremap <Esc> <nop>
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+filetype  plugin on
+filetype  indent on
+syntax    on
+nnoremap / /\v
+vnoremap / /\v
+set gdefault
+set autoindent                  " copy indent from current line
+set autoread                    " read open files again when changed outside Vim
+set autowrite                   " write a modified buffer on each :next , ...
+set backspace=indent,eol,start  " backspacing over everything in insert mode
+set browsedir=current           " which directory to use for the file browser
+set showmatch
+nnoremap <tab> %
+vnoremap <tab> %
+set background=dark
+colorscheme solarized
+let &showbreak='↪ '
+set scrolloff=3
+set history=50                  " keep 50 lines of command line history
+set hlsearch                    " highlightthe last used search pattern
+set incsearch                   " do incremental searching
+set listchars=tab:>.,eol:\$     " strings to use in 'list' mode
+set wrap
+set linebreak
+set nolist  " list disables linebreak
+set textwidth=0
+set wrapmargin=0
+set formatoptions+=l
+set popt=left:8pc,right:3pc     " print options
+set ruler                       " show the cursor position all the time
+set visualbell                  " visual bell instead of beeping
+set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
+set wildmenu                    " command-line completion in an enhanced mode
+
+"editor settings
+set esckeys             " map missed escape sequences (enables keypad keys)
+set ignorecase          " case insensitive searching
+set smartcase           " but become case sensitive if you type uppercase characters)
+set shiftwidth=2                " number of spaces to use for each step of indent
+set showcmd                     " display incomplete commands
+set smartindent                 " smart autoindenting when starting a new line
+set tabstop=2                   " number of spaces that a <Tab> counts for
+set softtabstop=2                   " number of spaces that a <Tab> counts for
+set expandtab                   " number of spaces that a <Tab> counts for
+set shiftround
+%retab
+" system settings
+set nobackup            " no backup~ files.
+set hidden              " remember undo after quitting
+
+if $VIM_CRONTAB == "true"
+  set nobackup
+  set nowritebackup
+endif
+
+" leader
+nnoremap <leader>\ :w<cr>:mak<cr>
+nnoremap <leader>. :cd %:h<cr>
+nnoremap <leader>c :s/.*/\L&/<bar>:s/\<./\u&/g<cr>
+nnoremap <leader>z :wq!<cr>
+
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+noremap ; :
+noremap : <nop>
+
+
+" Steve Losh
+noremap H ^
+noremap L g_
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+vnoremap K k
+vnoremap & :s<cr>
+
+" indentatino
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
