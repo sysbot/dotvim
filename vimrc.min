@@ -32,7 +32,6 @@ call vundle#end()            " required
 inoremap ;; <Esc>
 inoremap jk <Esc>
 inoremap jj <ESC>
-inoremap <Esc> <nop>
 
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -118,9 +117,15 @@ endfunction
 let &t_SI .= WrapForTmux("\<Esc>[?2004h")
 let &t_EI .= WrapForTmux("\<Esc>[?2004l")
 
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
 noremap ; :
 noremap : <nop>
-
+noremap  <silent> <s-tab> :bprevious<CR>
 
 " Steve Losh
 noremap H ^
@@ -135,3 +140,20 @@ nmap <D-[> <<
 nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
+
+
+iabbrev <expr> dts strftime("%c")
+iabbrev @@ ngqbao@gmail.com
+iabbrev ccopy Copyright 2015 Bao Nguyen, all rights reserved.
+iabbrev maintenace maintenance
+iab enviroment environment
+iab retreive retrieve
+iab retreiving retrieving
+iab avaiable available
+iab syncrohnized synchronized
+iab configuraiton configuration
+iab intergration integration
+iab nessasary necessary
+iab intergrated integrated
+iab catheral cathedral
+iab Catheral Cathedral
