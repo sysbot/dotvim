@@ -103,6 +103,8 @@ nnoremap <leader>. :cd %:h<cr>
 nnoremap <leader>c :s/.*/\L&/<bar>:s/\<./\u&/g<cr>
 nnoremap <leader>z :wq!<cr>
 
+" pasting without using set paste or set nopaste
+" https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 function! WrapForTmux(s)
   if !exists('$TMUX')
     return a:s
@@ -122,6 +124,8 @@ function! XTermPasteBegin()
   set paste
   return ""
 endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 noremap ; :
 noremap : <nop>
