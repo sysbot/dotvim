@@ -136,6 +136,8 @@ iab nessasary necessary
 iab intergrated integrated
 iab catheral cathedral
 iab Catheral Cathedral
+
+" insert date
 iabbrev <expr> dts strftime("%c")
 
 " Restore cursor position
@@ -335,6 +337,7 @@ let g:multi_cursor_exit_from_insert_mode = 1
 
 " spell specking!
 set spell spelllang=en_us
+nnoremap <leader>f 1z=
 
 " disable default keymap
 " " Default mapping
@@ -373,6 +376,8 @@ set foldmethod=indent
 
 " String to put at the start of lines that have been wrapped "
 let &showbreak='↪ '
+
+vnoremap . :norm.<CR>
 
 " Minimal number of screen lines to keep above and below the cursor "
 set scrolloff=3
@@ -447,8 +452,8 @@ nnoremap <leader>z :Gcommit<cr>
 nnoremap <leader>q <esc>:wq<cr>
 nnoremap <leader>s :VimShell<cr>
 
-nnoremap <Leader>7 :e $NOTES_DIR/Fastly\ networking<CR>
-nnoremap <Leader>8 :e $NOTES_DIR/Ruby\ notes<CR>
+nnoremap <Leader>7 :e $HOME/repos/journal/personal<CR>
+nnoremap <Leader>8 :e $HOME/repos/journal/work<CR>
 nnoremap <Leader>9 :e $NOTES_DIR/VIM\ notes<CR>
 noremap <leader>v <Esc>:e $MYVIMRC<CR>
 
